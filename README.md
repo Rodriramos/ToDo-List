@@ -23,3 +23,8 @@
 
 git switch main
 git merge develop
+
+7. Si quiero hacerlo con pull request
+
+    git checkout feature/login
+    git push origin feature/login

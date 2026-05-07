@@ -55,6 +55,20 @@ public class TaskService {
         return TaskMapper.toDTO(updatedTask);
     }
 
+    public TaskDTO updateTaskStatus(Long id, String status) {
+        Optional<Task> existingTask = taskRepository.findById(id);
+
+        if (!existingTask.isPresent()) {
+            throw new RuntimeException("Task not found with id: " + id);
+        }
+
+        var task = existingTask.get();
+        task.setStatus(status);
+
+        var updatedTask = taskRepository.save(task);
+        return TaskMapper.toDTO(updatedTask);
+    }
+
     public void deleteTask(Long id) {
         Optional<Task> task = taskRepository.findById(id);
         if (task.isPresent()) {
