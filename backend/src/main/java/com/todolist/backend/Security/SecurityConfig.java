@@ -10,14 +10,18 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
+import com.todolist.backend.Oauth2.OAuth2SuccessHandler;
+
 @Configuration
 @EnableWebSecurity
 public class SecurityConfig {
 
     private final JwtAuthFilter jwtAuthFilter;
+    private final OAuth2SuccessHandler oAuth2SuccessHandler;
 
-    public SecurityConfig(JwtAuthFilter jwtAuthFilter) {
+    public SecurityConfig(JwtAuthFilter jwtAuthFilter, OAuth2SuccessHandler oAuth2SuccessHandler) {
         this.jwtAuthFilter = jwtAuthFilter;
+        this.oAuth2SuccessHandler = oAuth2SuccessHandler;
     }
 
     @Bean
@@ -30,7 +34,10 @@ public class SecurityConfig {
                 .anyRequest().authenticated()
             )
             .addFilterBefore(jwtAuthFilter, UsernamePasswordAuthenticationFilter.class)
-            .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS));
+            .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.IF_REQUIRED))
+            .oauth2Login(oauth2 -> oauth2
+                .successHandler(oAuth2SuccessHandler)
+            );
         return http.build();
     }
 
