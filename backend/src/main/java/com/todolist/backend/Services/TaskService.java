@@ -3,7 +3,6 @@ package com.todolist.backend.Services;
 import java.util.List;
 import java.util.Optional;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.todolist.backend.DTOs.TaskDTO;
@@ -13,8 +12,12 @@ import com.todolist.backend.Repositories.TasksRepo;
 
 @Service
 public class TaskService {
-    @Autowired
+
     private TasksRepo taskRepository;
+
+    public TaskService(TasksRepo taskRepository) {
+        this.taskRepository = taskRepository;
+    }
 
     public List<TaskDTO> getAllTasks() {
         List<Task> tasks = taskRepository.findAll();
