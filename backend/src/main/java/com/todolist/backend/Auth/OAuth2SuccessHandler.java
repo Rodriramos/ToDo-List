@@ -1,4 +1,4 @@
-package com.todolist.backend.Oauth2;
+package com.todolist.backend.auth;
 
 import org.springframework.security.core.Authentication;
 import org.springframework.security.web.authentication.SimpleUrlAuthenticationSuccessHandler;
@@ -6,9 +6,9 @@ import org.springframework.stereotype.Component;
 import org.springframework.security.oauth2.client.authentication.OAuth2AuthenticationToken;
 import org.springframework.security.oauth2.core.user.OAuth2User;
 
-import com.todolist.backend.Entities.User;
-import com.todolist.backend.Repositories.UsersRepo;
-import com.todolist.backend.Security.JwtUtil;
+import com.todolist.backend.entities.User;
+import com.todolist.backend.repositories.UsersRepo;
+import com.todolist.backend.security.JwtUtil;
 
 import java.io.IOException;
 import jakarta.servlet.ServletException;

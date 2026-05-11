@@ -1,15 +1,15 @@
-package com.todolist.backend.Auth;
+package com.todolist.backend.auth;
 
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import com.todolist.backend.DTOs.LoginRequestDTO;
-import com.todolist.backend.Entities.User;
-import com.todolist.backend.Exceptions.InvalidCredentialsException;
-import com.todolist.backend.Exceptions.PasswordMismatchException;
-import com.todolist.backend.Exceptions.UserAlreadyExistsException;
-import com.todolist.backend.Repositories.UsersRepo;
-import com.todolist.backend.Security.JwtUtil;
+import com.todolist.backend.dtos.LoginRequestDTO;
+import com.todolist.backend.entities.User;
+import com.todolist.backend.exceptions.InvalidCredentialsException;
+import com.todolist.backend.exceptions.PasswordMismatchException;
+import com.todolist.backend.exceptions.UserAlreadyExistsException;
+import com.todolist.backend.repositories.UsersRepo;
+import com.todolist.backend.security.JwtUtil;
 
 @Service
 public class AuthService {
@@ -25,7 +25,6 @@ public class AuthService {
     }
 
     public String registerUser(RegisterRequest request) {
-
         if (userRepository.existsByUsername(request.getUsername())) {
             throw new UserAlreadyExistsException(request.getUsername());
         }
@@ -35,12 +34,14 @@ public class AuthService {
         if (!request.getPassword().equals(request.getConfirmPassword())) {
             throw new PasswordMismatchException("Passwords do not match");
         }
+
         User user = User.builder()
                 .username(request.getUsername())
                 .email(request.getEmail())
                 .password(passwordEncoder.encode(request.getPassword()))
                 .provider("LOCAL")
                 .build();
+
         return jwtUtil.generateToken(userRepository.save(user));
     }
 
@@ -53,5 +54,4 @@ public class AuthService {
         }
         return jwtUtil.generateToken(user);
     }
-
 }

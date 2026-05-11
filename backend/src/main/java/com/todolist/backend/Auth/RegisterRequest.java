@@ -1,4 +1,4 @@
-package com.todolist.backend.Auth;
+package com.todolist.backend.auth;
 
 import jakarta.validation.constraints.Size;
 import jakarta.validation.constraints.Email;
@@ -11,6 +11,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class RegisterRequest {
+    
     @NotBlank
     @Size(min = 6, max = 30)
     private String username;

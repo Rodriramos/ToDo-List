@@ -1,4 +1,4 @@
-package com.todolist.backend.Security;
+package com.todolist.backend.security;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -10,7 +10,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
-import com.todolist.backend.Oauth2.OAuth2SuccessHandler;
+import com.todolist.backend.auth.OAuth2SuccessHandler;
 
 @Configuration
 @EnableWebSecurity
@@ -45,5 +45,4 @@ public class SecurityConfig {
     public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
     }
-
 }

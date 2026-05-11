@@ -1,4 +1,4 @@
-package com.todolist.backend.Entities;
+package com.todolist.backend.entities;
 
 import java.time.LocalDate;
 

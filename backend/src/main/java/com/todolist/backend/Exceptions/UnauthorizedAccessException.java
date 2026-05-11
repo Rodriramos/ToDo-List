@@ -1,8 +1,8 @@
-package com.todolist.backend.Exceptions;
+package com.todolist.backend.exceptions;
 
 public class UnauthorizedAccessException extends RuntimeException {
+
     public UnauthorizedAccessException(String message) {
         super(message);
     }
-
 }
