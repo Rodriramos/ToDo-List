@@ -1,10 +1,10 @@
-package com.todolist.backend.Auth;
+package com.todolist.backend.DTOs;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
 
 @Data
 @AllArgsConstructor
-public class AuthResponse {
+public class AuthResponseDTO {
     private String token;
 }
