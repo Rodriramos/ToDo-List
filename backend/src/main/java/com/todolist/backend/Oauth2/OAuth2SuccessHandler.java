@@ -3,7 +3,7 @@ package com.todolist.backend.Oauth2;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.web.authentication.SimpleUrlAuthenticationSuccessHandler;
 import org.springframework.stereotype.Component;
-
+import org.springframework.security.oauth2.client.authentication.OAuth2AuthenticationToken;
 import org.springframework.security.oauth2.core.user.OAuth2User;
 
 import com.todolist.backend.Entities.User;
@@ -34,13 +34,23 @@ public class OAuth2SuccessHandler extends SimpleUrlAuthenticationSuccessHandler 
 
         OAuth2User oAuth2User = (OAuth2User) authentication.getPrincipal();
         String email = oAuth2User.getAttribute("email");
-        String name = oAuth2User.getAttribute("name");
+        String name = oAuth2User.getAttribute("name") != null
+                ? oAuth2User.getAttribute("name")
+                : oAuth2User.getAttribute("login");
+
+        if (email == null) {
+            getRedirectStrategy().sendRedirect(request, response, "http://localhost:3000?error=email_not_available");
+            return;
+        }
+
+        OAuth2AuthenticationToken authToken = (OAuth2AuthenticationToken) authentication;
+        String provider = authToken.getAuthorizedClientRegistrationId().toUpperCase();
 
         User user = usersRepo.findByEmail(email)
                 .orElseGet(() -> usersRepo.save(User.builder()
                         .email(email)
                         .username(name)
-                        .provider("GOOGLE")
+                        .provider(provider)
                         .build()));
 
         String token = jwtUtil.generateToken(user);
