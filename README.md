@@ -89,3 +89,22 @@ ToDo-List
     ├── security
     └── services
 ├── frontend
+
+# ⚙️ Execution Modes
+
+The application supports different execution modes using Spring profiles.
+
+This allows separating local development configuration from production or future deployment environments.
+
+---
+
+## 📌 Available Profiles
+
+### 🔧 Local Mode
+
+Used for local development and testing.
+
+Example:
+
+```bash
+./mvnw spring-boot:run "-Dspring-boot.run.profiles=local"
