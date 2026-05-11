@@ -1,4 +1,4 @@
-package com.todolist.backend.Exceptions;
+package com.todolist.backend.exceptions;
 
 import java.time.LocalDateTime;
 

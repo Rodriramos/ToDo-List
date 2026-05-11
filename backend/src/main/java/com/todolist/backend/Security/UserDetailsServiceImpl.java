@@ -1,12 +1,12 @@
-package com.todolist.backend.Security;
+package com.todolist.backend.security;
 
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
-import com.todolist.backend.Entities.User;
-import com.todolist.backend.Repositories.UsersRepo;
+import com.todolist.backend.entities.User;
+import com.todolist.backend.repositories.UsersRepo;
 
 @Service
 public class UserDetailsServiceImpl implements UserDetailsService {

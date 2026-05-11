@@ -1,8 +1,8 @@
-package com.todolist.backend.Security;
+package com.todolist.backend.security;
 
 import org.springframework.stereotype.Component;
 
-import com.todolist.backend.Entities.User;
+import com.todolist.backend.entities.User;
 
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.io.Decoders;

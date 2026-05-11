@@ -1,4 +1,4 @@
-package com.todolist.backend.Controllers;
+package com.todolist.backend.controllers;
 
 import java.util.List;
 
@@ -9,8 +9,9 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.todolist.backend.DTOs.TaskDTO;
-import com.todolist.backend.Services.TaskService;
+import com.todolist.backend.dtos.TaskDTO;
+import com.todolist.backend.services.TaskServiceImpl;
+
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -25,9 +26,9 @@ import org.springframework.web.bind.annotation.PutMapping;
 @RequestMapping("/api/tasks")
 public class TaskController {
     
-    private final TaskService taskService;
+    private final TaskServiceImpl taskService;
 
-    public TaskController(TaskService taskService) {
+    public TaskController(TaskServiceImpl taskService) {
         this.taskService = taskService;
     }
 

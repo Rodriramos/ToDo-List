@@ -1,4 +1,4 @@
-package com.todolist.backend.DTOs;
+package com.todolist.backend.dtos;
 
 import java.time.LocalDate;
 
@@ -10,6 +10,8 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class TaskDTO {
+    
+    private Long id;
     private String name;
     private String description;
     private LocalDate startDate;

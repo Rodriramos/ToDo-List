@@ -1,4 +1,4 @@
-package com.todolist.backend.Auth;
+package com.todolist.backend.auth;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -7,8 +7,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.todolist.backend.DTOs.AuthResponseDTO;
-import com.todolist.backend.DTOs.LoginRequestDTO;
+import com.todolist.backend.dtos.AuthResponseDTO;
+import com.todolist.backend.dtos.LoginRequestDTO;
 
 import jakarta.validation.Valid;
 
@@ -31,5 +31,4 @@ public class AuthController {
     public ResponseEntity<AuthResponseDTO> login(@Valid @RequestBody LoginRequestDTO request) {
         return ResponseEntity.ok(new AuthResponseDTO(authService.loginUser(request)));
     }
-
 }
