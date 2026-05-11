@@ -7,6 +7,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.todolist.backend.DTOs.AuthResponseDTO;
+import com.todolist.backend.DTOs.LoginRequestDTO;
+
 import jakarta.validation.Valid;
 
 @RestController
@@ -20,13 +23,13 @@ public class AuthController {
     }
 
     @PostMapping("/register")
-    public ResponseEntity<AuthResponse> register(@Valid @RequestBody RegisterRequest request) {
-        return ResponseEntity.status(HttpStatus.CREATED).body(new AuthResponse(authService.registerUser(request)));
+    public ResponseEntity<AuthResponseDTO> register(@Valid @RequestBody RegisterRequest request) {
+        return ResponseEntity.status(HttpStatus.CREATED).body(new AuthResponseDTO(authService.registerUser(request)));
     }
 
     @PostMapping("/login")
-    public ResponseEntity<AuthResponse> login(@Valid @RequestBody LoginRequest request) {
-        return ResponseEntity.ok(new AuthResponse(authService.loginUser(request)));
+    public ResponseEntity<AuthResponseDTO> login(@Valid @RequestBody LoginRequestDTO request) {
+        return ResponseEntity.ok(new AuthResponseDTO(authService.loginUser(request)));
     }
 
 }

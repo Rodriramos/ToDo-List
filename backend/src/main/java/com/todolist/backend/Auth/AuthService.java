@@ -1,10 +1,9 @@
 package com.todolist.backend.Auth;
 
-import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import com.todolist.backend.DTOs.LoginRequestDTO;
 import com.todolist.backend.Entities.User;
 import com.todolist.backend.Exceptions.InvalidCredentialsException;
 import com.todolist.backend.Exceptions.PasswordMismatchException;
@@ -45,7 +44,7 @@ public class AuthService {
         return jwtUtil.generateToken(userRepository.save(user));
     }
 
-    public String loginUser(LoginRequest request) {
+    public String loginUser(LoginRequestDTO request) {
         User user = userRepository.findByUsernameOrEmail(request.getIdentifier(), request.getIdentifier())
                 .orElseThrow(() -> new InvalidCredentialsException("Invalid username or password"));
 
